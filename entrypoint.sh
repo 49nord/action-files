@@ -12,4 +12,5 @@ echo "${INPUT_KNOWN_HOSTS}" > ${KNOWN_HOSTS}
 
 set -x
 
+cat ${KNOWN_HOSTS}
 exec rsync -e "ssh -o UserKnownHostsFile=${KNOWN_HOSTS} ${INPUT_SSH_ARGS}" ${INPUT_RSYNC_ARGS} "${INPUT_SRC}" "${INPUT_DEST}"
