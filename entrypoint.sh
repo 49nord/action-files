@@ -10,12 +10,6 @@ echo "${INPUT_SSH_KEY}" | ssh-add -
 KNOWN_HOSTS=$(mktemp)
 echo "${INPUT_KNOWN_HOSTS}" > ${KNOWN_HOSTS}
 
-if [ ! -z "${INPUT_SSH_ARGS}" ]; then
-  RSYNC_SSH_ARGS="-e \"${INPUT_SSH_ARGS} -o UserKnownHostsFile=${KNOWN_HOSTS}\""
-else
-  RSYNC_SSH_ARGS=""
-fi
-
 set -x
 
-exec rsync ${RSYNC_SSH_ARGS} ${INPUT_RSYNC_ARGS} "${INPUT_SRC}" "${INPUT_DEST}"
+exec rsync "-e \"ssh -o UserKnownHostsFile=${KNOWN_HOSTS} ${INPUT_SSH_ARGS}\"" ${INPUT_RSYNC_ARGS} "${INPUT_SRC}" "${INPUT_DEST}"
