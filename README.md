@@ -13,9 +13,12 @@ An example configuration for a step:
     src: output/
     dest: root@example.com:/var/www/html/
     ssh_key: ${{ secrets.SSH_KEY }}
+    known_hosts: |
+      example.com ssh-rsa AAAAB....
+      example.com ecdsa-sha2-nistp256 AAAAE....
 ```
 
-Note the importantance of keeping the trailing slashes on `src` and `dest` to prevent `rsync` from creating subdirectories.
+Note the importantance of keeping the trailing slashes on `src` and `dest` to prevent `rsync` from creating subdirectories. The `known_hosts` contents can be copied from a well-known hostfile or generated using `ssh-keyscan` in a pinch, it is important to ensure that the hostname matches the one in `dest`.
 
 ## Alternatives
 
