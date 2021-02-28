@@ -1,6 +1,6 @@
 # GitHub file publishing actions
 
-Deploy files to remote servers via `rsync` + SSH by copying them.
+Deploy files to remote servers via `rsync` + SSH by copying them. See the [`CHANGELOG.md`](CHANGELOG.md) for details.
 
 ## Examples
 
