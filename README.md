@@ -8,7 +8,7 @@ An example configuration for a step:
 
 ```yaml
 - name: rsync deployments
-  uses: 49nord/action-file@v1
+  uses: 49nord/action-files@v1
   with:
     src: output/
     dest: root@example.com:/var/www/html/
