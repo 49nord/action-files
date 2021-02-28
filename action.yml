@@ -11,6 +11,9 @@ inputs:
   ssh_key:
     description: SSH private key to add before attempting any transfer.
     required: true
+  known_hosts:
+    description: SSH known hosts file.
+    required: true
   rsync_args:
     description: Arguments passed to `rsync`. The defaults should cover most usecases.
     default: "--delete -avz"

@@ -6,8 +6,12 @@ set -eu
 eval $(ssh-agent)
 echo "${INPUT_SSH_KEY}" | ssh-add -
 
+# Store known hosts in a temporary file.
+KNOWN_HOSTS=$(mktemp)
+echo "${INPUT_KNOWN_HOSTS}" > ${KNOWN_HOSTS}
+
 if [ ! -z "${INPUT_SSH_ARGS}" ]; then
-  RSYNC_SSH_ARGS="-e \"${INPUT_SSH_ARGS}\""
+  RSYNC_SSH_ARGS="-e \"${INPUT_SSH_ARGS} -o UserKnownHostsFile=${KNOWN_HOSTS}\""
 else
   RSYNC_SSH_ARGS=""
 fi
