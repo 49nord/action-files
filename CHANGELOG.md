@@ -6,3 +6,5 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 
 ## [Unreleased]
 
+- Added: Support rsync uploads
+- Added: `rsync` and `ssh` flags can be changed via configuration.

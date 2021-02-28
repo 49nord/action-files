@@ -4,7 +4,18 @@ Deploy files to remote servers via `rsync` + SSH by copying them. See the [`CHAN
 
 ## Examples
 
-TBW
+An example configuration for a step:
+
+```yaml
+- name: rsync deployments
+  uses: 49nord/action-file@1
+  with:
+    src: output/
+    dest: root@example.com:/var/www/html/
+    ssh_key: ${{ secrets.SSH_KEY }}
+```
+
+Note the importantance of keeping the trailing slashes on `src` and `dest` to prevent `rsync` from creating subdirectories.
 
 ## Alternatives
 

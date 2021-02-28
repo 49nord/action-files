@@ -1,0 +1,23 @@
+name: "File deployments"
+description: "GitHub Action that uploads files to remote servers (rsync + SSH)"
+author: "49nord GmbH"
+inputs:
+  src:
+    description: The local path that should be uploaded. Should end with a slash.
+    required: true
+  dest:
+    description: The remote location to sync to, e.g. `user@host:/path/to/dest/`. Should end with a slash.
+    required: true
+  rsync_args:
+    description: Arguments passed to `rsync`. The defaults should cover most usecases.
+    default: "--delete -avz"
+    required: false
+  ssh_args:
+    description: Argments passed to `rsyncs` SSH invocation, e.g. to pass a custom port use `-p 12345`.
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "send"
+  color: "blue"
