@@ -4,7 +4,7 @@ set -eu
 
 # We use SSH agent to avoid having to store a copy of the private key on disk.
 eval $(ssh-agent)
-echo ${INPUT_SSH_KEY} | ssh-add -
+echo "${INPUT_SSH_KEY}" | ssh-add -
 
 if [ ! -z "${INPUT_SSH_ARGS}" ]; then
   RSYNC_SSH_ARGS="-e \"${INPUT_SSH_ARGS}\""
