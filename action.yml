@@ -8,6 +8,9 @@ inputs:
   dest:
     description: The remote location to sync to, e.g. `user@host:/path/to/dest/`. Should end with a slash.
     required: true
+  ssh_key:
+    description: SSH private key to add before attempting any transfer.
+    required: true
   rsync_args:
     description: Arguments passed to `rsync`. The defaults should cover most usecases.
     default: "--delete -avz"
