@@ -7,7 +7,7 @@ Deploy files to remote servers via `rsync` + SSH by copying them. See the [`CHAN
 An example configuration for a step:
 
 ```yaml
-- name: rsync deployments
+- name: Upload files
   uses: 49nord/action-files@v1
   with:
     src: output/
