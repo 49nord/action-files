@@ -11,8 +11,8 @@ KNOWN_HOSTS=$(mktemp)
 echo "${INPUT_KNOWN_HOSTS}" > ${KNOWN_HOSTS}
 
 # Determine the target host and directory, in case we need to create id
-TARGET_HOST=${dest%:*}
-TARGET_DIR=${dest#:*}
+TARGET_HOST=${INPUT_DEST%:*}
+TARGET_DIR=${INPUT_DEST#:*}
 
 # Setup the SSH command.
 SSH="ssh -o UserKnownHostsFile=${KNOWN_HOSTS} ${INPUT_SSH_ARGS}"
