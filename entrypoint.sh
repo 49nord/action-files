@@ -10,7 +10,16 @@ echo "${INPUT_SSH_KEY}" | ssh-add -
 KNOWN_HOSTS=$(mktemp)
 echo "${INPUT_KNOWN_HOSTS}" > ${KNOWN_HOSTS}
 
+# Determine the target host and directory, in case we need to create id
+TARGET_HOST=${dest%:*}
+TARGET_DIR=${dest#:*}
+
+# Setup the SSH command.
+SSH="ssh -o UserKnownHostsFile=${KNOWN_HOSTS} ${INPUT_SSH_ARGS}"
+
 set -x
 
 cat ${KNOWN_HOSTS}
-exec rsync -e "ssh -o UserKnownHostsFile=${KNOWN_HOSTS} ${INPUT_SSH_ARGS}" ${INPUT_RSYNC_ARGS} "${INPUT_SRC}" "${INPUT_DEST}"
+
+${SSH} -o UserKnownHostsFile=${KNOWN_HOSTS} ${INPUT_SSH_ARGS} "${TARGET_HOST}" mkdir -p ${TARGET_DIR}
+exec rsync -e "${SSH}" ${INPUT_RSYNC_ARGS} "${INPUT_SRC}" "${INPUT_DEST}"
